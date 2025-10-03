@@ -32,5 +32,4 @@ EXPOSE 8000
 # TTS sunucusunu başlat (model ilk çalıştırmada indirilecek)
 CMD ["python3", "-m", "TTS.server.server", \
      "--model_name", "tts_models/multilingual/multi-dataset/xtts_v2", \
-     "--host", "0.0.0.0", \
      "--port", "8000"]
