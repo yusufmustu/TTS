@@ -22,7 +22,8 @@ COPY . /root
 # TTS'i kur
 RUN make install
 
-# XTTS v2 modelini önceden indir
+# XTTS v2 modelini önceden indir (lisans otomatik onayı ile)
+ENV COQUI_TOS_AGREED=1
 RUN python3 -c "from TTS.api import TTS; TTS('tts_models/multilingual/multi-dataset/xtts_v2')"
 
 # Railway PORT değişkeni
