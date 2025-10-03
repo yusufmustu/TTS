@@ -4,7 +4,7 @@ FROM python:3.11-slim
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y --no-install-recommends \
     gcc g++ make \
-    python3 python3-dev python3-pip python3-venv python3-wheel \
+    python3.11 python3.11-dev python3.11-pip python3.11-venv python3.11-wheel \
     espeak-ng libsndfile1-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -30,7 +30,7 @@ ENV PORT=8000
 EXPOSE 8000
 
 # TTS sunucusunu başlat (model ilk çalıştırmada indirilecek)
-CMD ["python3", "-m", "TTS.server.server", \
+CMD ["python3.11", "-m", "TTS.server.server", \
      "--model_name", "tts_models/multilingual/multi-dataset/xtts_v2", \
      "--host", "0.0.0.0", \
      "--port", "8000"]
