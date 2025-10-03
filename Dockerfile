@@ -29,10 +29,8 @@ ENV COQUI_TOS_AGREED=1
 ENV PORT=8000
 EXPOSE 8000
 
-# Modeli önceden indir
-RUN python3 -c "from TTS.utils.manage import ModelManager; manager = ModelManager(); manager.download_model('tts_models/multilingual/multi-dataset/xtts_v2')"
-
-# TTS sunucusunu başlat - sadece model klasörünü belirt
-CMD python3 -m TTS.server.server \
-    --model_path /root/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2 \
-    --port $PORT
+# TTS sunucusunu başlat (model ilk çalıştırmada indirilecek)
+CMD ["python3", "-m", "TTS.server.server", \
+     "--model_name", "tts_models/multilingual/multi-dataset/xtts_v2", \
+     "--host", "0.0.0.0", \
+     "--port", "8000"]
