@@ -22,15 +22,14 @@ COPY . /root
 # TTS'i kur
 RUN make install
 
-# XTTS v2 modelini önceden indir (lisans otomatik onayı ile)
+# Lisans otomatik onayı
 ENV COQUI_TOS_AGREED=1
-RUN python3 -c "from TTS.api import TTS; TTS('tts_models/multilingual/multi-dataset/xtts_v2')"
 
 # Railway PORT değişkeni
 ENV PORT=8000
 EXPOSE 8000
 
-# TTS sunucusunu başlat
+# TTS sunucusunu başlat (model ilk çalıştırmada indirilecek)
 CMD ["python3", "-m", "TTS.server.server", \
      "--model_name", "tts_models/multilingual/multi-dataset/xtts_v2", \
      "--host", "0.0.0.0", \
